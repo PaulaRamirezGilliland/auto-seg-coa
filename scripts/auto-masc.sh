@@ -43,18 +43,19 @@ conda activate Segmentation_FetalMRI_MONAI
 
 #UPDATE AS REQUIRED BEFORE RUNNING !!!!
 software_path=/home
-mirtk_path=/bin
+soft_mirtk_path=/bin
 default_run_dir=/home/tmp_proc
 
-mirtk_path=${mirtk_path}/MIRTK/build/bin
-dcm2niix_path=${mirtk_path}/dcm2niix/build/bin
+mirtk_path=${soft_mirtk_path}/MIRTK/build/bin
+dcm2niix_path=${soft_mirtk_path}/dcm2niix/build/bin
 segm_path=${software_path}/auto-seg-heart/
 template_path=${segm_path}/templates
 
 
-test_dir=${mirtk_path}/MIRTK
+
+test_dir=${soft_mirtk_path}/MIRTK
 if [[ ! -d ${test_dir} ]];then
-    echo "ERROR: COULD NOT FIND MIRTK INSTALLED IN : " ${mirtk_path}
+    echo "ERROR: COULD NOT FIND MIRTK INSTALLED IN : " ${soft_mirtk_path}
     echo "PLEASE INSTALL OR UPDATE THE PATH software_path VARIABLE IN THE SCRIPT"
     exit
 fi

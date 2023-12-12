@@ -3,7 +3,7 @@ from __future__ import print_function
 import sys
 import os
 import tempfile
-from monai.transforms import (AddChanneld, Compose, LoadImaged, ScaleIntensityd, ToTensord, )
+from monai.transforms import (EnsureChannelFirstd, Compose, LoadImaged, ScaleIntensityd, ToTensord, )
 from monai.networks.nets import UNet
 from monai.data import (DataLoader, CacheDataset, load_decathlon_datalist, )
 import torch
@@ -34,7 +34,7 @@ os.chdir(root_dir)
 run_transforms = Compose(
     [
         LoadImaged(keys=["image"]),
-        AddChanneld(keys=["image"]),
+        EnsureChannelFirstd(keys=["image"]),
         ScaleIntensityd(
             keys=["image"], minv=0.0, maxv=1.0
         ),

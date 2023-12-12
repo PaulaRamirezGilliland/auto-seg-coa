@@ -22,7 +22,6 @@ humanize
 kiwisolver
 matplotlib
 monai
-nibabel
 packaging
 pandas
 pillow
@@ -38,3 +37,4 @@ tqdm
 pycocotools
 pydicom
 nibabel
+

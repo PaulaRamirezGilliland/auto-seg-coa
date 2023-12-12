@@ -48,7 +48,7 @@ default_run_dir=/home/tmp_proc
 
 mirtk_path=${soft_mirtk_path}/MIRTK/build/bin
 dcm2niix_path=${soft_mirtk_path}/dcm2niix/build/bin
-segm_path=${software_path}/auto-seg-heart/
+segm_path=${software_path}/auto-seg-coa/
 template_path=${segm_path}/templates
 
 
@@ -98,7 +98,7 @@ echo "--------------------------------------------------------------------------
 echo
 
 if [[ $# -ne 2 ]] ; then
-    echo "Usage: bash /home/auto-seg-heart/auto-masc.sh"
+    echo "Usage: bash /home/auto-seg-coa/auto-masc.sh"
     echo "            [full path to the folder with 3D T2w SVR recons]"
     echo "            [full path to the folder for segmentation results]"
     echo

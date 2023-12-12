@@ -3,11 +3,11 @@ from __future__ import print_function
 import sys
 import os
 import tempfile
-import nibabel as nib
 from monai.transforms import (AddChanneld, Compose, LoadImaged, ScaleIntensityd, ToTensord, )
 from monai.networks.nets import UNet
 from monai.data import (DataLoader, CacheDataset, load_decathlon_datalist, )
 import torch
+import nibabel as nib
 import warnings
 
 warnings.filterwarnings("ignore")

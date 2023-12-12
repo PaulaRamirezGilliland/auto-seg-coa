@@ -37,3 +37,4 @@ pytorch-ignite
 tqdm
 pycocotools
 pydicom
+nibabel

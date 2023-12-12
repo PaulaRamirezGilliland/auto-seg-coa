@@ -8,7 +8,6 @@ from monai.transforms import (AddChanneld, Compose, LoadImaged, ScaleIntensityd,
 from monai.networks.nets import AttentionUnet, DenseNet121 
 from monai.data import (DataLoader, CacheDataset, load_decathlon_datalist,)
 import torch
-from statistics import mode
 import warnings
 warnings.filterwarnings("ignore") 
 warnings.simplefilter("ignore")

@@ -229,7 +229,7 @@ ${mirtk_path}/mirtk prepare-for-monai res-stack-files/ stack-files/ stack-info.j
 
 
 mkdir monai-segmentation-results-thorax
-python ${segm_path}/scripts/run_monai_thorax_loc.py ${main_dir}/ ${monai_check_path}/ stack-info.json ${main_dir}/monai-segmentation-results-thorax ${monai_lab_num}
+python ${segm_path}/src/run_monai_thorax_loc.py ${main_dir}/ ${monai_check_path}/ stack-info.json ${main_dir}/monai-segmentation-results-thorax ${monai_lab_num}
 
 
 number_of_stacks=$(find monai-segmentation-results-thorax/ -name "*.nii*" | wc -l)
@@ -297,7 +297,7 @@ ${mirtk_path}/mirtk prepare-for-monai res-masked-stack-files/ masked-stack-files
 
 mkdir monai-segmentation-results-masc
 
-python ${segm_path}/scripts/run_monai_atunet_masc.py ${main_dir}/ ${monai_check_path}/ masked-stack-info.json ${main_dir}/monai-segmentation-results-masc ${monai_lab_num}
+python ${segm_path}/src/run_monai_atunet_masc.py ${main_dir}/ ${monai_check_path}/ masked-stack-info.json ${main_dir}/monai-segmentation-results-masc ${monai_lab_num}
 
 number_of_stacks=$(find monai-segmentation-results-masc/ -name "*.nii*" | wc -l)
 

@@ -37,9 +37,9 @@ echo
 
 source ~/.bashrc
 
-eval "$(conda shell.bash hook)"
-conda init bash
-conda activate Segmentation_FetalMRI_MONAI
+#eval "$(conda shell.bash hook)"
+#conda init bash
+#conda activate Segmentation_FetalMRI_MONAI
 
 #UPDATE AS REQUIRED BEFORE RUNNING !!!!
 software_path=/home

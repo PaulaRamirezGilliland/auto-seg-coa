@@ -23,6 +23,29 @@ docker run -it --rm --mount type=bind,source=location_on_your_machine,target=/ho
 bash /home/auto-seg-coa/scripts/auto-coa.sh /home/data/ your_folder_with_brain_svr_t2_files /home/data/output_folder_for_segmentations
 ```
 
+MASC: Multi-task vessel Segmentation and diagnosis Classification for aortic arch anomalies (fetal cardiac MRI): 
+-------------
+
+
+MASC is a Pytorch and MONAI (https://monai.io/) based multi-task framework for multi-class segmentation and classification in fetal cardiac aortic arch anomalies. The default architectures are Attention U-Net for segmentation and DenseNet121 for classification.
+
+
+<img src="https://user-images.githubusercontent.com/93882352/231525071-c67e6777-2417-4abd-8f1b-6574e98ec0f5.png
+" alt="MASC_FETAL_CARDIAC" height="200" align ="centre" />
+
+
+Our networks are trained on 3D T2w reconstructions of fetal cardiac MRI, cropped to the fetal thorax. It is only trained on the following anomalies:  suspected Coarctation of the Aorta (CoA), Right Aortic Arch (RAA) with Aberrant left subclavian artery, and Double Aortic Arch (DAA). The predicted diagnosis class is one of CoA, RAA or DAA. 
+
+To run it: 
+
+Follow steps 1. and 2 described above (Auto-CoA) 
+
+
+3.	Run 3D fetal cardiac vessel segmentation and classification: 
+```bash
+bash /home/auto-seg-heart/scripts/auto-masc.sh /home/data/ your_folder_with_brain_svr_t2_files /home/data/output_folder_for_segmentations
+```
+
 
 License:
 --------

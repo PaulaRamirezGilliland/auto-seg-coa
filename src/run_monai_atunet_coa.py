@@ -103,7 +103,7 @@ for x in range(len(run_datalist)):
         run_outputs = segmenter(run_inputs)
 
         # Save the segmentation
-        out_name = results_path + "/cnn-lab-pred-" + case_name
+        out_name = results_path + "/cnn-lab-" + case_name
         print("OUT NAME", out_name)
 
         out_label = torch.argmax(run_outputs, dim=1).detach().cpu()[0, ...]

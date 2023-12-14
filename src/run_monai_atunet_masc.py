@@ -197,7 +197,7 @@ for x in range(len(run_datalist)):
         print('The predicted condition is = {}'.format(class_out_mode))
 
         # Save the segmentation, with predicted class in filename
-        out_name = results_path + "/cnn-lab-pred-" + case_name[:-7] + "-" + class_out_mode + ".nii.gz"
+        out_name = results_path + "/cnn-lab-" + case_name[:-7] + "-" + class_out_mode + ".nii.gz"
         print("OUT NAME", out_name)
 
         out_label = torch.argmax(predicted_seg_avg, dim=1).detach().cpu()[0, ...]

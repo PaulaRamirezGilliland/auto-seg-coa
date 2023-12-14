@@ -37,11 +37,7 @@ echo
 
 source ~/.bashrc
 
-eval "$(conda shell.bash hook)"
-conda init bash
-conda activate Segmentation_FetalMRI_MONAI
 
-#UPDATE AS REQUIRED BEFORE RUNNING !!!!
 software_path=/home
 soft_mirtk_path=/bin
 default_run_dir=/home/tmp_proc
@@ -186,15 +182,13 @@ echo " REMOVING NAN & NEGATIVE/EXTREME VALUES "
 echo "-----------------------------------------------------------------------------"
 echo
 
-
 for ((i=0;i<${#all_stacks[@]};i++));
 do
     echo " - " ${i} " : " ${all_stacks[$i]}
 
+
     ${mirtk_path}/mirtk extract-image-region ${all_stacks[$i]} ${all_stacks[$i]} -Rt1 0 -Rt2 0
-    ${mirtk_path}/mirtk threshold-image ${all_stacks[$i]} ../th.nii.gz 0.005 > ../tmp.txt
-    ${mirtk_path}/mirtk crop-image ${all_stacks[$i]} ../th.nii.gz ${all_stacks[$i]}
-    ${mirtk_path}/mirtk nan ${all_stacks[$i]} 1000000
+    python3 ${segm_path}/src/rescale_ints.py ${default_run_dir}/org-files-preproc/${all_stacks[$i]} ${default_run_dir}/org-files-preproc/${all_stacks[$i]} #${default_run_dir}/th.nii.gz
 
 done
 
@@ -338,8 +332,7 @@ do
     ${mirtk_path}/mirtk invert-dof ${default_run_dir}/masked-stack-${jj}.dof ${default_run_dir}/inv-masked-stack-${jj}.dof
     ${mirtk_path}/mirtk transform-image ${all_masks[$i]} ${all_masks[$i]}  -target ${all_stacks[$i]} -dofin ${default_run_dir}/inv-masked-stack-${jj}.dof -interp Linear -labels
     ${mirtk_path}/mirtk transform-image ${all_masks[$i]} ${all_masks[$i]} -target ${all_stacks[$i]} -labels
-    #${mirtk_path}/mirtk transform-and-rename ${all_stacks[$i]} ${all_masks[$i]} "-mask-cardiac-"${monai_lab_num}${prefix} ${main_dir}/cardiac-masks
-    ${mirtk_path}/mirtk transform-and-rename ${all_stacks[$i]} ${all_masks[$i]} "-mask-heart-1" ${main_dir}/cardiac-masks
+    ${mirtk_path}/mirtk transform-and-rename ${all_stacks[$i]} ${all_masks[$i]} "-seg-vessels" ${main_dir}/cardiac-masks
     OUT=${output_main_folder}/predicted_diag.txt
     touch ${OUT}
     echo "Predicted diagnosis for case" ${all_stacks[$i]:10:4} "is" ${prefix}  >> ${OUT}
@@ -350,7 +343,7 @@ done
 number_of_final_files=$(ls ${main_dir}/cardiac-masks/*.nii* | wc -l)
 if [[ ${number_of_final_files} -ne 0 ]];then
 
-    cp -r cardiac-masks/*.nii* ${output_main_folder}/
+    cp -r cardiac-masks/*-seg-vessels.nii* ${output_main_folder}/
 
 
     echo "-----------------------------------------------------------------------------"
@@ -374,4 +367,3 @@ echo
 echo "-----------------------------------------------------------------------------"
 echo "-----------------------------------------------------------------------------"
 echo
-
